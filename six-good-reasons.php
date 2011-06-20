@@ -65,9 +65,10 @@
     <div class="article_text">
       <h2 class="title_09">3.	Широкое использование</h2>
       <p>
-	Intranets, major general public sites, social networks, community sites, management and workflow applications, etc. Examples are not lacking: Hundreds of sites and applications of all sizes and of all types trust Symfony.
-	<br>
-	This is specifically the case of Yahoo!, Dailymotion, Opensky.com, Exercise.com and even applications such as phpBB.
+	Интранет, большие сайты компаний, социальные сети, сайты сообществ, системы управления и документооборота  написаны с помощью Symfony. Сотни сайтов и приложений всех размеров и типов доверяют Symfony.
+<br>
+С фреймворком Symfony работают  Yahoo, Dailymotion, Opensky.com, Exercise.com и даже такие приложения, как PhpBB.
+
       </p>
     </div>
 
