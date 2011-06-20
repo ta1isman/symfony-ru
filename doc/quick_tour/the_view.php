@@ -79,7 +79,7 @@
 	</div>
 	<p>Переменные, передаваемые в шаблон могут быть строками, массивами
 	или даже объектами. Twig скрывает разницу между ними и позволяет
-	получить доступ к "аттрибутам" через точку (<tt class="docutils literal"><span class="pre">.</span></tt>):</p>
+	получить доступ к "атрибутам" через точку (<tt class="docutils literal"><span class="pre">.</span></tt>):</p>
 	<div class="highlight-jinja"><div class="highlight"><pre><span class="c">{# array('name' =&gt; 'Fabien') #}</span><span class="x"></span>
 <span class="cp">{{</span> <span class="nv">name</span> <span class="cp">}}</span><span class="x"></span>
 
@@ -111,7 +111,7 @@
       </div>
       <div class="section" id="decorating-templates">
 	<h2>Декорирование шаблонов<a class="headerlink" href="#decorating-templates" title="Permalink to this headline">¶</a></h2>
-	<p>Часто шаблоны в проекте используеют общие элементы, такие как,
+	<p>Часто шаблоны в проекте используют общие элементы, такие как,
 	например, шапка (header) и футер. В Symfony2 эта проблема решается
 	под другому: один шаблон может быть декорирован другим. Это работает
 	как классы в PHP: наследование шаблонов позволяет вам создать базовый
@@ -135,7 +135,7 @@
 	для обычных шаблонов. Часть <tt class="docutils literal"><span class="pre">::</span></tt>
 	означает что элемент "контроллер" пуст, что означает, что файл
 	находится прямо в папке <tt class="docutils literal"><span class="pre">views/</span></tt>.</p>
-	<p>Now, let's have a look at a simplified <tt class="docutils literal"><span class="pre">layout.html.twig</span></tt>:</p>
+	<p>Теперь давайте посмотрим на упрощённый <tt class="docutils literal"><span class="pre">layout.html.twig</span></tt>:</p>
 	<div class="highlight-jinja"><div class="highlight"><pre><span class="c">{# src/Acme/DemoBundle/Resources/views/layout.html.twig #}</span><span class="x"></span>
 <span class="x">&lt;div class="symfony-content"&gt;</span>
 <span class="x">    </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span><span class="x"></span>
@@ -143,26 +143,26 @@
 <span class="x">&lt;/div&gt;</span>
 	  </pre></div>
 	</div>
-	<p>The <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">%}</span></tt> tags define blocks that child templates can fill in. All
-	  the block tag does is to tell the template engine that a child template may
-	  override those portions of the template. The <tt class="docutils literal"><span class="pre">hello.html.twig</span></tt> template
-	  overrides the <tt class="docutils literal"><span class="pre">content</span></tt> block.</p>
+	<p>Теги <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">%}</span></tt>
+	задают блоки, которые могут быть заполнены в дочерних шаблонах. Все блоки говорят шаблонизатору, что эта часть может
+	быть перегружена в дочерних шаблонах. Шаблон <tt class="docutils literal"><span class="pre">hello.html.twig</span></tt>
+	перегружает блок <tt class="docutils literal"><span class="pre">content</span></tt>.</p>
       </div>
       <div class="section" id="using-tags-filters-and-functions">
-	<h2>Using Tags, Filters, and Functions<a class="headerlink" href="#using-tags-filters-and-functions" title="Permalink to this headline">¶</a></h2>
-	<p>One of the best feature of Twig is its extensibility via tags, filters, and
-	  functions. Symfony2 comes bundled with many of these built-in to ease the
-	  work of the template designer.</p>
+	<h2>Использование тегов, фильтров и функций<a class="headerlink" href="#using-tags-filters-and-functions" title="Permalink to this headline">¶</a></h2>
+	<p>Одна из самых крутых фич Twig - это расширяемость через теги, фильтры и
+	функции. Symfony2 поставляется с множеством этих расширений для удобной
+	работы верстальщиков.</p>
 	<div class="section" id="including-other-templates">
-	  <h3>Including other Templates<a class="headerlink" href="#including-other-templates" title="Permalink to this headline">¶</a></h3>
-	  <p>The best way to share a snippet of code between several distinct templates is
-	    to create a new template that can then be included from other templates.</p>
-	  <p>Create an <tt class="docutils literal"><span class="pre">embedded.html.twig</span></tt> template:</p>
+	  <h3>Включение других шаблонов<a class="headerlink" href="#including-other-templates" title="Permalink to this headline">¶</a></h3>
+	  <p>Лучшее решения для использования куска кода в множество шаблонов это
+	  создание нового шаблона, который может быть подключен из других.</p>
+	  <p>Создайте шаблон <tt class="docutils literal"><span class="pre">embedded.html.twig</span></tt>:</p>
 	  <div class="highlight-jinja"><div class="highlight"><pre><span class="c">{# src/Acme/DemoBundle/Resources/views/Demo/embedded.html.twig #}</span><span class="x"></span>
 <span class="x">Hello </span><span class="cp">{{</span> <span class="nv">name</span> <span class="cp">}}</span><span class="x"></span>
 	    </pre></div>
 	  </div>
-	  <p>And change the <tt class="docutils literal"><span class="pre">index.html.twig</span></tt> template to include it:</p>
+	  <p>И измените <tt class="docutils literal"><span class="pre">index.html.twig</span></tt>, чтобы подключить его:</p>
 	  <div class="highlight-jinja"><div class="highlight"><pre><span class="c">{# src/Acme/DemoBundle/Resources/views/Demo/hello.html.twig #}</span><span class="x"></span>
 <span class="cp">{%</span> <span class="k">extends</span> <span class="s2">"AcmeDemoBundle::layout.html.twig"</span> <span class="cp">%}</span><span class="x"></span>
 
@@ -174,20 +174,23 @@
 	  </div>
 	</div>
 	<div class="section" id="embedding-other-controllers">
-	  <h3>Embedding other Controllers<a class="headerlink" href="#embedding-other-controllers" title="Permalink to this headline">¶</a></h3>
-	  <p>And what if you want to embed the result of another controller in a template?
-	    That's very useful when working with Ajax, or when the embedded template needs
-	    some variable not available in the main template.</p>
-	  <p>Suppose you've created a <tt class="docutils literal"><span class="pre">fancy</span></tt> action, and you want to include it inside
-	    the <tt class="docutils literal"><span class="pre">index</span></tt> template. To do this, use the <tt class="docutils literal"><span class="pre">render</span></tt> tag:</p>
+	  <h3>Подключение других контроллеров<a class="headerlink" href="#embedding-other-controllers" title="Permalink to this headline">¶</a></h3>
+	  <p>Что если вы хотите включить результат другого контроллера в шаблон?
+	  Это пригодится при использовании Ajax или когда подключаемому шаблону
+	  нужна переменная, не доступная из главного шаблона.</p>
+	  <p>Предположим вы создали экшен <tt class="docutils literal"><span class="pre">fancy</span></tt>
+	  и вы хотите включить его в шаблон <tt class="docutils literal"><span class="pre">index</span></tt>.
+	  Сделайте это, используя тег <tt class="docutils literal"><span class="pre">render</span></tt>:</p>
 	  <div class="highlight-jinja"><div class="highlight"><pre><span class="c">{# src/Acme/DemoBundle/Resources/views/Demo/index.html.twig #}</span><span class="x"></span>
 <span class="cp">{%</span> <span class="k">render</span> <span class="s2">"AcmeDemoBundle:Demo:fancy"</span> <span class="k">with</span> <span class="o">{</span> <span class="s1">'name'</span><span class="o">:</span> <span class="nv">name</span><span class="o">,</span> <span class="s1">'color'</span><span class="o">:</span> <span class="s1">'green'</span> <span class="o">}</span> <span class="cp">%}</span><span class="x"></span>
 	    </pre></div>
 	  </div>
-	  <p>Here, the <tt class="docutils literal"><span class="pre">AcmeDemoBundle:Demo:fancy</span></tt> string refers to the <tt class="docutils literal"><span class="pre">fancy</span></tt> action
-	    of the <tt class="docutils literal"><span class="pre">Demo</span></tt> controller. The arguments (<tt class="docutils literal"><span class="pre">name</span></tt> and <tt class="docutils literal"><span class="pre">color</span></tt>) act like
-	    simulated request variables (as if the <tt class="docutils literal"><span class="pre">fancyAction</span></tt> were handling a whole
-	    new request) and are made available to the controller:</p>
+	  <p>Здесь строка <tt class="docutils literal"><span class="pre">AcmeDemoBundle:Demo:fancy</span></tt>
+	  означает экшен <tt class="docutils literal"><span class="pre">fancy</span></tt>
+	  и контроллер <tt class="docutils literal"><span class="pre">Demo</span></tt>.
+	  Аргументы (<tt class="docutils literal"><span class="pre">name</span></tt> и <tt class="docutils literal"><span class="pre">color</span></tt>)
+	  симулирует переменные запроса (как если бы <tt class="docutils literal"><span class="pre">fancyAction</span></tt> 
+	  обрабатывало новый запрос):</p>
 	  <div class="highlight-php"><div class="highlight"><pre><span class="c1">// src/Acme/DemoBundle/Controller/DemoController.php</span>
 
 <span class="k">class</span> <span class="nc">DemoController</span> <span class="k">extends</span> <span class="nx">Controller</span>
@@ -206,18 +209,18 @@
 	  </div>
 	</div>
 	<div class="section" id="creating-links-between-pages">
-	  <h3>Creating Links between Pages<a class="headerlink" href="#creating-links-between-pages" title="Permalink to this headline">¶</a></h3>
-	  <p>Speaking of web applications, creating links between pages is a must. Instead
-	    of hardcoding URLs in templates, the <tt class="docutils literal"><span class="pre">path</span></tt> function knows how to generate
-	    URLs based on the routing configuration. That way, all your URLs can be easily
-	    updated by just changing the configuration:</p>
+	  <h3>Создание ссылок между страницами<a class="headerlink" href="#creating-links-between-pages" title="Permalink to this headline">¶</a></h3>
+	  <p>Если мы говорим о веб-приложениях, то создание ссылок между страницами
+	  обязательно. 	Вместо прямого написания URL в шаблонах функция <tt class="docutils literal"><span class="pre">path</span></tt>
+	  генерирует шаблоны на основе правил маршрутизации. Все ссылки могут
+	  быть легко изменены простой сменой конфигурации:</p>
 	  <div class="highlight-html+jinja"><div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"</span><span class="cp">{{</span> <span class="nv">path</span><span class="o">(</span><span class="s1">'_demo_hello'</span><span class="o">,</span> <span class="o">{</span> <span class="s1">'name'</span><span class="o">:</span> <span class="s1">'Thomas'</span> <span class="o">})</span> <span class="cp">}}</span><span class="s">"</span><span class="nt">&gt;</span>Greet Thomas!<span class="nt">&lt;/a&gt;</span>
 	    </pre></div>
 	  </div>
-	  <p>The <tt class="docutils literal"><span class="pre">path</span></tt> function takes the route name and an array of parameters as
-	    arguments. The route name is the main key under which routes are referenced
-	    and the parameters are the values of the placeholders defined in the route
-	    pattern:</p>
+	  <p>Функция <tt class="docutils literal"><span class="pre">path</span></tt>
+	  принимает имя маршрута и массив параметров в качестве аргументов.
+	  Имя маршрута - это главный ключ, при помощи которого можно
+	  использовать маршрут:</p>
 	  <div class="highlight-php"><div class="highlight"><pre><span class="c1">// src/Acme/DemoBundle/Controller/DemoController.php</span>
 <span class="k">use</span> <span class="nx">Sensio\Bundle\FrameworkExtraBundle\Configuration\Route</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Sensio\Bundle\FrameworkExtraBundle\Configuration\Template</span><span class="p">;</span>
@@ -239,18 +242,18 @@
 	  </div></div>
 	</div>
 	<div class="section" id="including-assets-images-javascripts-and-stylesheets">
-	  <h3>Including Assets: images, JavaScripts, and stylesheets<a class="headerlink" href="#including-assets-images-javascripts-and-stylesheets" title="Permalink to this headline">¶</a></h3>
-	  <p>What would the Internet be without images, JavaScripts, and stylesheets?
-	    Symfony2 provides the <tt class="docutils literal"><span class="pre">asset</span></tt> function to deal with them easily:</p>
+	  <h3>Подключение ресурсов: картинки, JavaScript и стили<a class="headerlink" href="#including-assets-images-javascripts-and-stylesheets" title="Permalink to this headline">¶</a></h3>
+	  <p>Каким бы был интернет без картинок, JavaScript'ов и стилей?
+	  Symfony2 предоставляет функцию <tt class="docutils literal"><span class="pre">asset</span></tt>
+	  для легкого взаимодействия с ними:</p>
 	  <div class="highlight-jinja"><div class="highlight"><pre><span class="x">&lt;link href="</span><span class="cp">{{</span> <span class="nv">asset</span><span class="o">(</span><span class="s1">'css/blog.css'</span><span class="o">)</span> <span class="cp">}}</span><span class="x">" rel="stylesheet" type="text/css" /&gt;</span>
 
 <span class="x">&lt;img src="</span><span class="cp">{{</span> <span class="nv">asset</span><span class="o">(</span><span class="s1">'images/logo.png'</span><span class="o">)</span> <span class="cp">}}</span><span class="x">" /&gt;</span>
 	    </pre></div>
 	  </div>
-	  <p>The <tt class="docutils literal"><span class="pre">asset</span></tt> function's main purpose is to make your application more portable.
-	    Thanks to this function, you can move the application root directory anywhere
-	    under your web root directory without changing anything in your template's
-	    code.</p>
+	  <p>Главная цель функции <tt class="docutils literal"><span class="pre">asset</span></tt> 
+	  сделать ваше приложение более переносимым. Благодаря этой функции вы можете
+	  перемещать вашу корневую директорию без изменения кода шаблонов.</p>
 	</div>
       </div>
       <div class="section" id="escaping-variables">
