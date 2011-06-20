@@ -237,7 +237,7 @@
 	  </div>
 	  <div class="admonition-wrapper">
 	    <div class="tip"></div><div class="admonition admonition-tip"><p class="first admonition-title">Tip</p>
-	      <p class="last">The <tt class="docutils literal"><span class="pre">url</span></tt> function generates <em>absolute</em> URLs: <tt class="docutils literal"><span class="pre">{{</span> <span class="pre">url('_demo_hello',</span> <span class="pre">{</span>
+	      <p class="last">Функция <tt class="docutils literal"><span class="pre">url</span></tt> генерирует <em>абсолютный</em> URL: <tt class="docutils literal"><span class="pre">{{</span> <span class="pre">url('_demo_hello',</span> <span class="pre">{</span>
 		  <span class="pre">'name':</span> <span class="pre">'Thomas'</span> <span class="pre">})</span> <span class="pre">}}</span></tt>.</p>
 	  </div></div>
 	</div>
