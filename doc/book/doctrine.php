@@ -2,7 +2,7 @@
 <div class="column_02">
 
   <div class="box_title">
-    <h1 class="title_01">Databases and Doctrine ("The Model")</h1>
+    <h1 class="title_01">Базы данных и Doctrine ("Модели")</h1>
   </div>
   
   
@@ -12,37 +12,40 @@
     
     
     <div class="section" id="databases-and-doctrine-the-model">
-      <span id="index-0"></span><h1>Databases and Doctrine ("The Model")<a class="headerlink" href="#databases-and-doctrine-the-model" title="Permalink to this headline">¶</a></h1>
-      <p>Let's face it, one of the most common and challenging tasks for any application
-	involves persisting and reading information to and from a database. Fortunately,
-	Symfony comes integrated with <a class="reference external" href="http://www.doctrine-project.org/">Doctrine</a>, a library whose sole goal is to
-	give you powerful tools to make this easy. In this chapter, you'll learn the
-	basic philosophy behind Doctrine and see how easy working with a database can
-	be.</p>
+      <span id="index-0"></span><h1>Базы данных и Doctrine ("Модели")<a class="headerlink" href="#databases-and-doctrine-the-model" title="Permalink to this headline">¶</a></h1>
+      <p>Давайте посмотрим правде в глаза, одна из самых распространенных и сложных
+      задач для любого приложения - это сохранение и чтение информации из базы
+      данных. К счастью, Symfony поставляется с интегрированной <a class="reference external" href="http://www.doctrine-project.org/">Doctrine</a>,
+      библиотекой, главная цель которой - дать вам мощный инструмент, делающей
+      эту задачу простой. В этой главе вы узнаете базовую философию Doctrine и
+      увидите на сколько простой может быть работа с базой данных.</p>
       <div class="admonition-wrapper">
 	<div class="note"></div><div class="admonition admonition-note"><p class="first admonition-title">Note</p>
-	  <p>Doctrine is totally decoupled from Symfony and using it is optional.
-	    This chapter is all about the Doctrine ORM, which aims to let you map
-	    objects to a relational database (such as <em>MySQL</em>, <em>PostgreSQL</em> or <em>Microsoft SQL</em>).
-	    If you prefer to use raw database queries, this is easy, and explained
-	    in the "<a class="reference internal" href="../cookbook/doctrine/dbal.html"><em>How to use Doctrine's DBAL Layer</em></a>" cookbook entry.</p>
-	  <p class="last">You can also persist data to <a class="reference external" href="http://www.mongodb.org/">MongoDB</a> using Doctrine ODM library. For
-	    more information, read the "<a class="reference internal" href="../cookbook/doctrine/mongodb.html"><em>How to use MongoDB</em></a>" cookbook
-	    entry.</p>
+	  <p>Doctrine является полностью отдельным инструментов и ее использование
+	  не обязательно. В этой главе все о Doctrine ORM, которая оперирует
+	  объектами для работы с реляционными базами данных ( таких как <em>MySQL</em>, <em>PostgreSQL</em> или <em>Microsoft SQL</em>).
+	  Если вы предпочитаете обычные запросы, то это просто и раскрыто в статье
+	  "<a class="reference internal" href="../cookbook/doctrine/dbal.html"><em>How to use Doctrine's DBAL Layer</em></a>"
+	  книги рецептов.</p>
+	  <p class="last">Вы так же можете сохранять информацию в <a class="reference external" href="http://www.mongodb.org/">MongoDB</a>,
+	  используя библиотеку Doctrine ODM. Для большей информации читайте главу
+	  "<a class="reference internal" href="../cookbook/doctrine/mongodb.html"><em>How to use MongoDB</em></a>"
+	  книги рецептов.</p>
       </div></div>
       <div class="section" id="a-simple-example-a-product">
-	<h2>A Simple Example: A Product<a class="headerlink" href="#a-simple-example-a-product" title="Permalink to this headline">¶</a></h2>
-	<p>The easiest way to understand how Doctrine works is to see it in action.
-	  In this section, you'll configure your database, create a <tt class="docutils literal"><span class="pre">Product</span></tt> object,
-	  persist it to the database and fetch it back out.</p>
+	<h2>Простой пример: Продукт<a class="headerlink" href="#a-simple-example-a-product" title="Permalink to this headline">¶</a></h2>
+	<p>Простейший путь для понимания того, как работает Doctrine - это увидеть
+	все на примере. В этой части вы настроите базу данных, создадите объект
+	<tt class="docutils literal"><span class="pre">Product</span></tt>,
+	сохраните его в базе данных и загрузите его обратно.</p>
 	<div class="admonition-wrapper">
-	  <div class="sidebar"></div><div class="admonition admonition-sidebar"><p class="first sidebar-title">Code along with the example</p>
-	    <p>If you want to follow along with the example in this chapter, create
-	      an <tt class="docutils literal"><span class="pre">AcmeStoreBundle</span></tt> via:</p>
+	  <div class="sidebar"></div><div class="admonition admonition-sidebar"><p class="first sidebar-title">Программирование вместе с примером</p>
+	    <p>Если вы хотите следовать за примером в главе создайте <tt class="docutils literal"><span class="pre">AcmeStoreBundle</span></tt>
+	    через:</p>
 	    <div class="highlight-bash"><div class="highlight"><pre>php app/console init:bundle <span class="s2">"Acme\StoreBundle"</span> src/
 	      </pre></div>
 	    </div>
-	    <p>Next, be sure that the new bundle is enabled in the kernel:</p>
+	    <p>Убедитесь, что новый пакет подключен в ядре:</p>
 	    <div class="last highlight-php"><div class="highlight"><pre><span class="c1">// app/AppKernel.php</span>
 
 <span class="k">public</span> <span class="k">function</span> <span class="nf">registerBundles</span><span class="p">()</span>
@@ -56,24 +59,23 @@
 	    </div>
 	</div></div>
 	<div class="section" id="configuring-the-database">
-	  <h3>Configuring the Database<a class="headerlink" href="#configuring-the-database" title="Permalink to this headline">¶</a></h3>
-	  <p>Before you really begin, you'll need to configure your database connection
-	    information. By convention, this information is usually configured in an
-	    <tt class="docutils literal"><span class="pre">app/config/parameters.ini</span></tt> file:</p>
+	  <h3>Настройка базы<a class="headerlink" href="#configuring-the-database" title="Permalink to this headline">¶</a></h3>
+	  <p>Прежде чем начать вам нужно настроить соединение с базой данных. По
+	  соглашению эта информация обычно настраивается в файле <tt class="docutils literal"><span class="pre">app/config/parameters.ini</span></tt>:</p>
 	  <div class="highlight-ini"><div class="highlight"><pre><span class="c">;app/config/parameters.ini</span>
 <span class="k">[parameters]</span>
     <span class="na">database_driver</span>   <span class="o">=</span> <span class="s">pdo_mysql</span>
-<span class="s">    database_host     = localhost</span>
-<span class="s">    database_name     = test_project</span>
-<span class="s">    database_user     = root</span>
-<span class="s">    database_password = password</span>
+    <span class="na">database_host</span>     <span class="o">=</span> <span class="s">localhost</span>
+    <span class="na">database_name</span>     <span class="o">=</span> <span class="s">test_project</span>
+    <span class="na">database_user</span>     <span class="o">=</span> <span class="s">root</span>
+    <span class="na">database_password</span> <span class="o">=</span> <span class="s">password</span>
 	    </pre></div>
 	  </div>
 	  <div class="admonition-wrapper">
 	    <div class="note"></div><div class="admonition admonition-note"><p class="first admonition-title">Note</p>
-	      <p>Defining the configuration via <tt class="docutils literal"><span class="pre">parameters.ini</span></tt> is just a convention.
-		The parameters defined in that file are referenced by the main configuration
-		file when setting up Doctrine:</p>
+	      <p>Задание настроек через файл <tt class="docutils literal"><span class="pre">parameters.ini</span></tt>
+	      всего лишь соглашение. Параметры, заданные в этом файле, передаются
+	      в главную конфигурацию при настройке Doctrine:</p>
 	      <div class="highlight-yaml"><pre>doctrine:
     dbal:
         driver:   %database_driver%
@@ -82,24 +84,24 @@
         user:     %database_user%
 		  password: %database_password%</pre>
 	      </div>
-	      <p class="last">By separating the database information into a separate file, you can
-		easily keep different version of the file on each server. You can also
-		easily store database configuration (or any sensitive information) outside
-		of your project, like inside your Apache configuration, for example. For
-		more information, see <a class="reference internal" href="../cookbook/configuration/external_parameters.html"><em>How to Set External Parameters in the Service Container</em></a>.</p>
+	      <p class="last">При помощи разделения настроек на разные файлы, вы
+	      можете просто держать разные версии файлов на каждом сервере. Вы так же
+	      можете держать конфигурацию базы данных (или любую важную информацию)
+	      за пределами вашего проекта, например, внутри настроек Apache.
+	      Для большей информации смотрите <a class="reference internal" href="../cookbook/configuration/external_parameters.html"><em>How to Set External Parameters in the Service Container</em></a>.</p>
 	  </div></div>
-	  <p>Now that Doctrine knows about your database, you can have it create the database
-	    for you:</p>
+	  <p>Теперь Doctrine знает о вашей базе данных, вы можете создать базу командой:</p>
 	  <div class="highlight-bash"><div class="highlight"><pre>php app/console doctrine:database:create
 	    </pre></div>
 	  </div>
 	</div>
 	<div class="section" id="creating-an-entity-class">
-	  <h3>Creating an Entity Class<a class="headerlink" href="#creating-an-entity-class" title="Permalink to this headline">¶</a></h3>
-	  <p>Suppose you're building an application where products need to be displayed.
-	    Without even thinking about Doctrine or databases, you already know that
-	    you need a <tt class="docutils literal"><span class="pre">Product</span></tt> object to represent those products. Create this class
-	    inside the <tt class="docutils literal"><span class="pre">Entity</span></tt> directory of your <tt class="docutils literal"><span class="pre">AcmeStoreBundle</span></tt>:</p>
+	  <h3>Создание класса сущности (entity)<a class="headerlink" href="#creating-an-entity-class" title="Permalink to this headline">¶</a></h3>
+	  <p>Представим, что вы создаете приложение, где нужно отобразить продукты.
+	  Даже не думая о Doctrine или базах данных вы уже знаете, что вам нужен
+	  объект <tt class="docutils literal"><span class="pre">Product</span></tt>
+	  для представления данных. Создайте этот класс внутри директории <tt class="docutils literal"><span class="pre">Entity</span></tt>
+	  внутри вашего <tt class="docutils literal"><span class="pre">AcmeStoreBundle</span></tt>:</p>
 	  <div class="highlight-php"><div class="highlight"><pre><span class="c1">// src/Acme/StoreBundle/Entity/Product.php</span>
 <span class="k">namespace</span> <span class="nx">Acme\StoreBundle\Entity</span><span class="p">;</span>
 
@@ -113,32 +115,31 @@
 <span class="p">}</span>
 	    </pre></div>
 	  </div>
-	  <p>The class - often called an "entity", meaning <em>a basic class that holds data</em>
-	    - is simple and helps fulfill the business requirement of needing products
-	    in your application. This class can't be persisted to a database yet - it's
-	    just a simple PHP class.</p>
+	  <p>Этот класс - часто называемый "сущностью", имея ввиду <em>базовый класс,
+	  который содержит данные</em> - простой и помогает выполнять бизнес-правила
+	  вашего приложения. Этот класс не может сохранять информацию в базу - это
+	  простой PHP-класс.</p>
 	  <div class="admonition-wrapper">
 	    <div class="tip"></div><div class="admonition admonition-tip"><p class="first admonition-title">Tip</p>
-	      <p>Once you learn the concepts behind Doctrine, you can have Doctrine create
-		this entity class for you:</p>
+	      <p>Когда вы узнали как работает Doctrine, вы можете заставить Doctrine создать класс сущности за вас:</p>
 	      <div class="last highlight-bash"><div class="highlight"><pre>php app/console doctrine:generate:entity AcmeStoreBundle:Product <span class="s2">"name:string(255) price:float description:text"</span>
 		</pre></div>
 	      </div>
 	  </div></div>
 	</div>
 	<div class="section" id="add-mapping-information">
-	  <h3>2) Add Mapping Information<a class="headerlink" href="#add-mapping-information" title="Permalink to this headline">¶</a></h3>
-	  <p>Doctrine allows you to work with databases in a much more interesting way
-	    than just fetching rows of column-based table into an array. Instead, Doctrine
-	    allows you to persist entire <em>objects</em> to the database and fetch entire objects
-	    out of the database. This works by mapping a PHP class to a database table,
-	    and the properties of that PHP class to columns on the table:</p>
+	  <h3>2) Связование информации<a class="headerlink" href="#add-mapping-information" title="Permalink to this headline">¶</a></h3>
+	  <p>Doctrine позволяет работать с базами более интересным способом,
+	  чем запрос строк таблицы в массив. Вместо этого, Doctrine позволяет
+	  сохранять сами <em>объекты</em> в базу и запрашивать объекты обратно.
+	  Это работает при помощи связывания PHP-класса с таблиец БД и свойств этого
+	  класса со столбцами таблицы:</p>
 	  <img alt="../_images/doctrine_image_1.png" class="align-center" src="../_images/doctrine_image_1.png">
-	  <p>For Doctrine to be able to do this, you just have to create "metadata", or
-	    configuration that tells Doctrine exactly how the <tt class="docutils literal"><span class="pre">Product</span></tt> class and its
-	    properties should be <em>mapped</em> to the database. This metadata can be specified
-	    in a number of different formats including YAML, XML or directly inside the
-	    <tt class="docutils literal"><span class="pre">Product</span></tt> class via annotations:</p>
+	  <p>Чтобы сделать это с Doctrine, вы должны создать "метаданные" или
+	  конфигурацию, которая скажет Doctrine как класс <tt class="docutils literal"><span class="pre">Product</span></tt>
+	  и его свойства <em>связаны</em> с базой данных. Эти методанные могут быть
+	  описаны в нескольких форматах, включая YAML, XML или прямо внутри класса
+	  <tt class="docutils literal"><span class="pre">Product</span></tt> через аннотации:</p>
 	  <div class="configuration-block jsactive clearfix">
 	    <ul class="simple" style="height: 652px; ">
 	      <li class="selected"><em><a href="#">Annotations</a></em><div class="highlight-php-annotations" style="width: 690px; display: block; "><div class="highlight"><pre><span class="c1">// src/Acme/StoreBundle/Entity/Product.php</span>
@@ -219,8 +220,8 @@
 	  </div>
 	  <div class="admonition-wrapper">
 	    <div class="tip"></div><div class="admonition admonition-tip"><p class="first admonition-title">Tip</p>
-	      <p class="last">The table option is optional and if omitted, will be determined automatically
-		based on the name of the entity class.</p>
+	      <p class="last">Настрока "table" не обязательна и может быть опущена,
+	      тогда название таблицы будет определенно на основе названия класса.</p>
 	  </div></div>
 	  <p>Doctrine allows you to choose from a wide variety of different field types,
 	    each with their own options. For information on the available field types,
