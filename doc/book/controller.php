@@ -15,11 +15,9 @@
       <span id="index-0"></span><h1>Контроллер<a class="headerlink" href="#the-controller" title="Permalink to this headline">¶</a></h1>
       <p>Контроллер - PHP функция, задача которой - получение данных  из  HTTP запроса и формирование и отправка  HTTP ответа (в Symfony2 это объект
 	<tt class="docutils literal"><span class="pre">Response</span></tt> object). T). Ответ может быть страницей HTML, документом XML, сериализованным массивом JSON , изображением, переадресовыванием, ошибкой 404 и т.п. Контроллер может содержать любую произвольную логику, необходимую <em>вашему приложению</em> для формирования ответа.</p>
-      <p>Along the way, your controller might read information from the request, load
-	a database resource, send an email, or set information on the user's session.
-	But in all cases, the controller's final job is to return the <tt class="docutils literal"><span class="pre">Response</span></tt>
-	object that will be delivered back to the client. There's no magic and no
-	other requirements to worry about. Here are a few common examples:</p>
+      <p>В процессе своей работы  Контроллер может читать информацию из запроса(request), подключать ресурсы базы данных, отсылать письмо по email, или сохранять данные в пользовательской  сессии.
+	Но в любом случае, заключительным действием Контроллера будет возвращение объекта <tt class="docutils literal"><span class="pre">Response</span></tt>
+	который будет отправлен назад клиенту. Здесь нет ничего сложного. Вот несколько общих примеров:</p>
       <ul class="simple">
 	<li><em>Controller A</em> prepares a <tt class="docutils literal"><span class="pre">Response</span></tt> object representing the content
 	  for the homepage of the site.</li>
