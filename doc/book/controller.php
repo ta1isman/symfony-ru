@@ -19,17 +19,10 @@
 	Но в любом случае, заключительным действием Контроллера будет возвращение объекта <tt class="docutils literal"><span class="pre">Response</span></tt>
 	который будет отправлен назад клиенту. Здесь нет ничего сложного. Вот несколько общих примеров:</p>
       <ul class="simple">
-	<li><em>Controller A</em> prepares a <tt class="docutils literal"><span class="pre">Response</span></tt> object representing the content
-	  for the homepage of the site.</li>
-	<li><em>Controller B</em> reads the <tt class="docutils literal"><span class="pre">slug</span></tt> parameter from the request to load a
-	  blog entry from the database and create a <tt class="docutils literal"><span class="pre">Response</span></tt> object displaying
-	  that blog. If the <tt class="docutils literal"><span class="pre">slug</span></tt> can't be found in the database, it creates and
-	  returns a <tt class="docutils literal"><span class="pre">Response</span></tt> object with a 404 status code.</li>
-	<li><em>Controller C</em> handles the form submission of a contact form. It reads
-	  the form information from the request, saves the contact information to
-	  the database and emails the contact information to the webmaster. Finally,
-	  it creates a <tt class="docutils literal"><span class="pre">Response</span></tt> object that redirects the client's browser to
-	  the contact form "thank you" page.</li>
+	<li><em>Контроллер A</em> формирует объект <tt class="docutils literal"><span class="pre">Response</span></tt>, содержащий контент домашней страницы сайта.</li>
+	<li><em>Контроллер B</em> читает <tt class="docutils literal"><span class="pre">slug</span></tt> параметр из запроса(request) для загрузки из базы данных записей блога и создает объект <tt class="docutils literal"><span class="pre">Response</span></tt> , показывающий этот блог. Если <tt class="docutils literal"><span class="pre">slug</span></tt> не может быть найден в базе данных, он создает и возвращает объект <tt class="docutils literal"><span class="pre">Response</span></tt> с 404 кодом состояния(status code).</li>
+	<li><em>Контроллер C</em> обращается к данным формы контактов. Он читает информацию о форме из запроса, сохраняет контактную информацию в базе данных и отсылает контактную информацию по электронной почте веб-мастеру. Наконец, он создает объект <tt class="docutils literal"><span class="pre">Response</span></tt>который переадресовывает браузер клиента на страницу "Спасибо" форме котактов.
+</li>
       </ul>
       <div class="section" id="requests-controller-response-lifecycle">
 	<span id="index-1"></span><h2>Requests, Controller, Response Lifecycle<a class="headerlink" href="#requests-controller-response-lifecycle" title="Permalink to this headline">¶</a></h2>
