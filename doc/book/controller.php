@@ -12,13 +12,9 @@
     
     
     <div class="section" id="the-controller">
-      <span id="index-0"></span><h1>The Controller<a class="headerlink" href="#the-controller" title="Permalink to this headline">¶</a></h1>
-      <p>A controller is a PHP function you create that takes information from the
-	HTTP request and constructs and returns an HTTP response (as a Symfony2
-	<tt class="docutils literal"><span class="pre">Response</span></tt> object). The response could be an HTML page, an XML document,
-	a serialized JSON array, an image, a redirect, a 404 error or anything else
-	you can dream up. The controller contains whatever arbitrary logic <em>your
-	  application</em> needs to create that response.</p>
+      <span id="index-0"></span><h1>Контроллер<a class="headerlink" href="#the-controller" title="Permalink to this headline">¶</a></h1>
+      <p>Контроллер - PHP функция, задача которой - получение данных  из  HTTP запроса и формирование и отправка  HTTP ответа (в Symfony2 это объект
+	<tt class="docutils literal"><span class="pre">Response</span></tt> object). T). Ответ может быть страницей HTML, документом XML, сериализованным массивом JSON , изображением, переадресовыванием, ошибкой 404 и т.п. Контроллер может содержать любую произвольную логику, необходимую <em>вашему приложению</em> для формирования ответа.</p>
       <p>Along the way, your controller might read information from the request, load
 	a database resource, send an email, or set information on the user's session.
 	But in all cases, the controller's final job is to return the <tt class="docutils literal"><span class="pre">Response</span></tt>
